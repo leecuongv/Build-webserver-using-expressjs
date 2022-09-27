@@ -1,16 +1,16 @@
 const { mygroup } = require('../models/mygroup');
 
-function messageGetRequest(req, resp) {
+function messageGetRequest(req, res) {
     const id = Number(req.params.id);
     if (req.method == 'GET') {
-        resp.statusCode = 200;
-        resp.setHeader('Content-Type', 'text/html');
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/html');
         if (isNaN(id)) {
-            resp.write(`<html><body><ul>`);
+            res.write(`<html><body><ul>`);
             mygroup.forEach((student) => {
-                resp.write(`<li>${student.name}</li>`);
+                res.write(`<li>${student.name}</li>`);
             })
-            resp.write(`</ul></body></html>`);
+            res.write(`</ul></body></html>`);
 
         }
         else {
@@ -20,7 +20,7 @@ function messageGetRequest(req, resp) {
             if (student == undefined) {
                 student = JSON.parse(`{"name":"not valid"}`);
             }
-            resp.write(`<html><body><ul><li>${student.name}</li></ul></body></html>`);
+            res.write(`<html><body><ul><li>${student.name}</li></ul></body></html>`);
         }
     }
 }

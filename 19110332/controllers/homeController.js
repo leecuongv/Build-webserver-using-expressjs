@@ -1,10 +1,10 @@
 const { mygroup } = require('../models/mygroup');
 
-function homeGetRequest(req, resp) {
-    resp.statusCode = 200;
-    resp.setHeader('Content-Type', 'application/json');
-    resp.end(JSON.stringify(mygroup));
-    resp.end();
+function homeGetRequest(req, res) {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(mygroup));
+    res.end();
 }
 
 module.exports = {

@@ -1,13 +1,13 @@
 const { mygroup } = require('../models/mygroup');
-const { validId } = require('../models/valid_Id');
+const { validId } = require('../models/validId');
 
 
-function mssvGetRequest(req, resp) {
+function idGetRequest(req, res) {
     const id = Number(req.params.id);
-    resp.statusCode = 200;
-    resp.setHeader('Content-Type', 'application/json');
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
     if (isNaN(id)) {
-        resp.end(JSON.stringify(mygroup));
+        res.end(JSON.stringify(mygroup));
     }
     else {
         var student = mygroup.find(obj => {
@@ -16,11 +16,11 @@ function mssvGetRequest(req, resp) {
         if (student == undefined) {
             student = `{error:'not valid'}`;
         }
-        resp.end(JSON.stringify(student));
+        res.end(JSON.stringify(student));
     }
 }
 
-function mssvPostRequest(req, resp) {
+function idPostRequest(req, resp) {
     const id = Number(req.params.id);
     const newStudent = JSON.parse(JSON.stringify(req.body));
     var existed = checkExist(newStudent.id);
@@ -39,7 +39,7 @@ function mssvPostRequest(req, resp) {
 }
 
 module.exports = {
-    mssvGetRequest, mssvPostRequest
+    idGetRequest, idPostRequest
 }
 
 function checkExist(id) {

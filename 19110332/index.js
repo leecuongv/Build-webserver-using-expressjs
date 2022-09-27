@@ -3,7 +3,7 @@ const app = express();
 const PORT = 5000;
 
 const homeRoute = require('./routes/homeRoute');
-const mssvRoute = require('./routes/mssvRoute');
+const idRoute = require('./routes/idRoute');
 const messageRoute = require('./routes/messageRoute');
 
 app.use(express.json());
@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 
 app.use('/', homeRoute);
 
-app.use('/19110332', mssvRoute);
+app.use('/19110332', idRoute);
 
 app.use('/message', messageRoute);
 
